@@ -1,0 +1,23 @@
+## Copyright (C) 2017 y.kuznetsov
+## 
+## -*- texinfo -*- 
+## @deftypefn {} {@var{retval} =} bezier (@var{input1}, @var{input2})
+##
+## @seealso{}
+## @end deftypefn
+
+## Author: y.kuznetsov <y.kuznetsov@USWKS-008>
+## Created: 2017-11-03
+
+function B = bezier (t, varargin)
+  B = bezier_var(t, varargin);
+endfunction
+
+function B = bezier_var(t, points)
+  n = length(points);
+  if n == 1
+    B = points{1};
+  else
+    B = (1 - t)* bezier_var(t, {points{1:n-1}}) + t * bezier_var(t, {points{2:n}});
+  endif
+endfunction
