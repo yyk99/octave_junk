@@ -10,6 +10,9 @@
 ## Created: 2017-11-03
 
 function B = bezier (t, varargin)
+  if nargin < 2
+    error("usage: bezier(t, points...)");
+  endif
   B = bezier_var(t, varargin);
 endfunction
 
