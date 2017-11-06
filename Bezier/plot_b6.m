@@ -31,19 +31,20 @@ function plot_b6 ()
   p5 = [20, 0];
   p6 = p0;
   
-  
   n = 100;
   X = zeros(1, n);
   Y = zeros(1, n);
 
-for i = 1:n
-  t = 1.0 / n * (i-1);
-  B = bezier(t, p0, p1, p2, p3, p4, p5, p6);
-  X(i) = B(1);
-  Y(i) = B(2);
-endfor
-
-plot(X, Y, '-', [p0(1), p1(1), p2(1), p3(1), p4(1), p5(1), p6(1)], ...
-  [p0(2), p1(2), p2(2), p3(2), p4(2), p5(2), p6(2)], '-');
+  tic;
+  for i = 1:n
+    t = 1.0 / n * (i-1);
+    B = bezierMk2(t, p0, p1, p2, p3, p4, p5, p6);
+    X(i) = B(1);
+    Y(i) = B(2);
+  endfor
+  toc;
+  
+  plot(X, Y, '-', [p0(1), p1(1), p2(1), p3(1), p4(1), p5(1), p6(1)], ...
+    [p0(2), p1(2), p2(2), p3(2), p4(2), p5(2), p6(2)], '-');
 
 endfunction
