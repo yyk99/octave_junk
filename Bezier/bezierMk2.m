@@ -28,12 +28,3 @@ function B = bezierMk2 (u, varargin)
   
   B = Q(1,:);
 endfunction
-
-%function B = bezier_var(t, points)
-%  n = length(points);
-%  if n == 1
-%    B = points{1};
-%  else
-%    B = (1 - t)* bezier_var(t, {points{1:n-1}}) + t * bezier_var(t, {points{2:n}});
-%  endif
-%endfunction
