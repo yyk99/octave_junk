@@ -1,10 +1,10 @@
 #
 # u - scalar
-# P - vector of points 3D
+# P - (n, 3) vector of points 3D
 #
 function B = deCasteljau1(u, P)
   if nargin < 2
-    error("usage: bezier(t, points...)");
+    error("usage: deCasteljau1(u, P)");
   endif
 
   n = size(P, 1);
