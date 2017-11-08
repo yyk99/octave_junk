@@ -7,10 +7,10 @@ function S = deCasteljau2(u0, v0, P)
     error("usage: deCasteljau2(u0, v0, P)");
   endif
 
-  n = size(P, 1);
-  m = size(P, 2);
+  n = size(P, 2);
+  m = size(P, 1);
   
-  if (n < m)
+  if (n <= m)
     Q = zeros(m, 3);
     for j = 1:m
       Q(j,:) = deCasteljau1(u0, squeeze(P(j,:,:)));
