@@ -8,7 +8,7 @@
 
 #define NTHREADS 2
 #define N 100000000
-#define CHUNK 100
+#define CHUNK 10000
 
 int main( int argn, char *arg[] )
 {
@@ -37,8 +37,8 @@ int main( int argn, char *arg[] )
   sum = 0;
 
   clock_gettime( CLOCK_PROCESS_CPUTIME_ID, &start2 );
-  // #pragma omp parallel for  reduction(+:sum)  schedule(static, CHUNK)
-#pragma omp parallel for reduction(+:sum)
+#pragma omp parallel for  reduction(+:sum)  schedule(static, CHUNK)
+  //#pragma omp parallel for reduction(+:sum)
   for (int i = 0; i < N; i++ ) {
     sum = sum + a[i] * b[i];
   }
