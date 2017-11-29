@@ -12,9 +12,8 @@
 
 int main( int argn, char *arg[] )
 {
-  //  omp_set_num_threads( NTHREADS );
-
-  printf( "Number threads: %u\n", NTHREADS );
+  // omp_set_num_threads( NTHREADS );
+  // printf( "Number of threads: %u\n", NTHREADS );
 
   timespec start1, start2;
   start1.tv_sec = 0;
@@ -26,18 +25,19 @@ int main( int argn, char *arg[] )
 
   clock_gettime( CLOCK_PROCESS_CPUTIME_ID, &start1 );
 
-  //#pragma omp parallel for
-  for (int i = 0; i < N; i++ ) {
+#pragma omp parallel for
+  for (int i = 0; i < N; ++i)
     a[i] = 1 * 0.5;
+#pragma omp parallel for
+  for (int i = 0; i < N; ++i)
     b[i] = 1 * 2.0;
-  }
 
   clock_gettime( CLOCK_PROCESS_CPUTIME_ID, &start1 );
 
   sum = 0;
 
   clock_gettime( CLOCK_PROCESS_CPUTIME_ID, &start2 );
-#pragma omp parallel for  reduction(+:sum)  schedule(static, CHUNK)
+  //#pragma omp parallel for  reduction(+:sum)  schedule(static, CHUNK)
   //#pragma omp parallel for reduction(+:sum)
   for (int i = 0; i < N; i++ ) {
     sum = sum + a[i] * b[i];
