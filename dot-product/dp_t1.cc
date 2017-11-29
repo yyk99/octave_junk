@@ -5,9 +5,9 @@
 
 #include <cstdio>
 #include <cstdlib>
-
-
 #include <omp.h>
+
+#include "gettimeinmillis.h"
 
 double dot_product(size_t N, double *x, double *y)
 {
@@ -29,8 +29,6 @@ double dot_product(size_t N, double *x, double *y)
 	return sum;
 }
 
-
-
 int main()
 {
 	const size_t N = 1000 * 1000 * 80L;
@@ -47,13 +45,17 @@ int main()
                 y[i] = 4;
 
 
+	TimeInMillis t0 = GetTimeInMillis(), t1;
 	double s = dot_product(N, x, y);
+	t1 = GetTimeInMillis();
 
 	delete [] x;
 	delete [] y;
 
 	printf("s=%f\n", s);
+	printf("Elapsed: %.2f sec\n", (t1 - t0)/1000);
 
 	return 0;
 }
 
+// Elapsed: 1.60 sec
